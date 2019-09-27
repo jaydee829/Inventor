@@ -94,7 +94,37 @@ ClassSubList["artificer-infusionsmith"] = {
 
             extraname : "Infusion Upgrades",
 
-            extrachoices : ["Advanced Object Animation (prereq: level 15 Artificer)", "Animated Archer", "Arcane Armament", "Deflecting Weapon", "Detonate Armor (prereq: Arcane Armament, level 9 Artificer)", "Empower Weapon (prereq: level 11 Artificer)", "Enchanted Broom (prereq: level 11 Artificer)", "Infuse Elements", "Life Infusion (prereq: level 11 Artificer)", "Malicious Infusion (prereq: level 5 Artificer)", "Skilled Animation", "Spell Trapping Ring (prereq: level 9 Artificer)", "Soul Saving Bond", "Third Animated Weapon (prereq: level 15 Artificer)", "Warding Stone", "Weapon Enchantment Expertise (prereq: level 5 Artificer)", "Worn Enchantment"],
+            extrachoices : [
+				"Advanced Object Animation (prereq: level 15 Artificer)", 
+				"Animated Archer", 
+				"Animated Shield", 
+				"Arcane Ammunition", 
+				"Arcane Armament", 
+				"Deflecting Weapon", 
+				"Detonate Armament (prereq: level 9 Artificer)", 
+				"Dimensional Pockets (prereq: level 9 Artificer)", 
+				"Empower Weapon (prereq: level 11 Artificer)", 
+				"Enchanted Broom (prereq: level 11 Artificer)", 
+				"Infuse Elements", 
+				"Infuse Shadows (prereq: level 5 Artificer)", 
+				"Invisibility Cloak (prereq: level 9 Artificer)", 
+				"Life Infusion (prereq: level 11 Artificer)", 
+				"Magical Rod (prereq: level 11 Artificer)", 
+				"Magical Wand", 
+				"Malicious Infusion (prereq: level 5 Artificer)", 
+				"Mixed Technique (prereq: level 11 Artificer)", 
+				"Prepared Enchantment (prereq: level 9 Artificer)", 
+				"Ring of Reaction (prereq: level 5 Artificer)", 
+				"Skilled Animation", 
+				"Spell Trapping Ring (prereq: level 9 Artificer)", 
+				"Soul Saving Bond", 
+				"Third Animated Weapon (prereq: level 15 Artificer)",
+				"Translocation Binding (prereq: level 5 Artificer)", 
+				"Warding Stone", 
+				"Weapon Enchantment Expertise (prereq: level 5 Artificer)", 
+				"Weapon Enchantment Resonance (prereq: level 5 Artificer)", 
+				"Worn Enchantment"
+			],
 
 			 "advanced object animation (prereq: level 15 artificer)" : {
 
@@ -146,20 +176,33 @@ ClassSubList["artificer-infusionsmith"] = {
 
 				menlevel : 3,
 
-				description : "\n   " + "I master armoring myself with magical enchantments. I learn the mage armor spell. While under the effect of mage armor, I can add your Int modifier to your AC instead of your Dex modifier. You can only do this if I am not adding your Int modifier to your AC from another source. Additionally you gain resistance to force damage.",
+				description : "\n   " + "I master armoring myself with magical enchantments. I learn the mage armor spell. While under the effect of mage armor, I can add my Int modifier to my AC instead of my Dex modifier. I can only do this if I am not adding my Int modifier to my AC from another source. Additionally I gain resistance to force damage.",
 
 				spellcastingBonus : {
 
-					name : "Arcane Armament",
+					 name : "Arcane Armament",
 
-					spells : ["mage armor"],
+					 spells : ["mage armor"],
 
-					selection : ["mage armor"],
+					 selection : ["mage armor"],
 
-					},
+					 times : 1,					 
+
+				},
+				
+				armorOptions : {
+					regExpSearch : /justToAddToDropDown/,
+					name : "Arcane Armament (Int)",
+					source : ["KTA", 14],
+					ac : 13,
+					list : "magic",
+					dex : -10,
+					addMod : true,
+				},
+				armorAdd : "Arcane Armament (Int)",
 
 				dmgres : ["Force"]
-				//To do = Swap Dex for Int in this spell ability
+				
 			},
 
 			"deflecting weapon" : {
@@ -417,4 +460,3 @@ ClassSubList["artificer-infusionsmith"] = {
 	},
 
 };
-
