@@ -14,7 +14,7 @@ ClassSubList["artificer-infusionsmith"] = {
 
 			description : desc(["   I gain proficiency with jeweler's tools and calligrapher's supplies.", "Creating a magic spell scroll only takes me half the time and material cost it would normally take."]),
 
-			toolProfs : [["Jeweler's Tools", "Dex"], ["Calligrapher's supplies", "Dex"]],
+			toolProfs : ["Jeweler's Tools", "Calligrapher's supplies"],
 
 			},
 
@@ -24,7 +24,42 @@ ClassSubList["artificer-infusionsmith"] = {
 
 			minlevel : 1,
 
-			description : "\n   " + "At 1st level you can infuse a powerful armament to take into battle. At the end of a long rest, select one of the Infusions below. The infusion lasts until the end of your next long rest." + "\n   " + "Animated Weapon: touch a melee weapon an cause it to spring to life. An animated weapon can be carried or stowed, but when readied it floats beside you. As an action you can make a melee spell attack with it" + "\n   " + "If it hits it deals weapon damage dice + Int modifier. The range of this attack is 30 feet, with the range reduced to 15 feet if the weapon has the Heavy property, or increased to 60 feet if it has the Light property." + "\n   " + "Blasting Rod: touch a nonmagical wand-blank, stick staff or rod, infusing it with the ability to cast a cantrip. Select one Evocation cantrip from the Wizard spell list that does not require concetration. As an action you can use the Blasting rod to cast that cantrip." + "\n   " + "Once per turn when using the Blasting rod you can add your Int modifer to the damage dealt to that target." + "\n   " + "Infused Weapon: touch a weapon, enchanting its effectiveness. Whilst enchanted in this way you (and only you) have proficiency with it. You can wield the weapon as normal but can apply your Int modifier to attack and damage rolls instead of Strength or Dexterity." + "\n   " + "If an Infused Weapon has a single damage die, and that damage die is less than a d12, the damage die of the Infused Weapon is increased."
+			description : "\n   " + "At 1st level you can infuse a powerful armament to take into battle. At the end of a long rest, select one of the Infusions below. The infusion lasts until the end of your next long rest." + "\n   " + "Animated Weapon: touch a melee weapon an cause it to spring to life. An animated weapon can be carried or stowed, but when readied it floats beside you. As an action you can make a melee spell attack with it" + "\n   " + "If it hits it deals weapon damage dice + Int modifier. The range of this attack is 30 feet, with the range reduced to 15 feet if the weapon has the Heavy property, or increased to 60 feet if it has the Light property." + "\n   " + "Blasting Rod: touch a nonmagical wand-blank, stick staff or rod, infusing it with the ability to cast a cantrip. Select one Evocation cantrip from the Wizard spell list that does not require concetration. As an action you can use the Blasting rod to cast that cantrip." + "\n   " + "Once per turn when using the Blasting rod you can add your Int modifer to the damage dealt to that target." + "\n   " + "Infused Weapon: touch a weapon, enchanting its effectiveness. Whilst enchanted in this way you (and only you) have proficiency with it. You can wield the weapon as normal but can apply your Int modifier to attack and damage rolls instead of Strength or Dexterity." + "\n   " + "If an Infused Weapon has a single damage die, and that damage die is less than a d12, the damage die of the Infused Weapon is increased.",
+			
+			calcChanges : {
+
+				atkAdd : [
+
+				function (fields, v) {
+					
+					if (!classes.known.artificer || classes.known.artificer.level < 3 || v.isSpell) return;
+					
+					if ((/infused/i).test(v.WeaponText)) {
+						try {
+							var curDie = eval(fields.Damage_Die.replace('d', '*')); 
+						} catch (e) {
+							var curDie = 'x';
+						};
+						if (isNaN(curDie) || curDie == 4) {
+							fields.Damage_Die = '1d' + '6';
+						};
+						if (isNaN(curDie) || curDie == 6) {
+							fields.Damage_Die = '1d' + '8';
+						};
+						if (isNaN(curDie) || curDie == 8) {
+							fields.Damage_Die = '1d' + '10';
+						};
+						if (isNaN(curDie) || curDie == 10) {
+							fields.Damage_Die = '1d' + '12';
+						};
+						if (What('Int Mod') > What(AbilityScores.abbreviations[fields.Mod - 1] + ' Mod')) {
+							fields.Mod = 4;
+						};
+						fields.Proficiency = true;
+					}
+				}
+				],
+			}
 			
 		},
 
