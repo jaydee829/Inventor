@@ -1,0 +1,277 @@
+/*
+
+    Wonderous Class Items
+
+*/
+
+//Fleshsmith weapons and armor
+
+WeaponsList["extra fangs"] = {
+
+    regExpSearch : /^(?=.*extra fangs).*$/i,
+    name : "Extra Fangs",
+    source : ["KT:AR"],
+    ability : 2,
+    type : "Natural",
+    damage : [1, 6, "Piercing"],
+    range : "melee",
+    description : "",
+    abilitytodamage : true,
+    modifiers : ["Dex", ""],
+    monkweapon : false,
+
+};
+
+WeaponsList["extra tentacle"] = {
+
+    regExpSearch : /^(?=.*extra tentacle).*$/i,
+    name : "Extra Tentacle",
+    source : ["KT:AR"],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 4, "bludgeoning"],
+    range : "melee",
+    description : "has reach",
+    abilitytodamage : true,
+    modifiers : ["Str", ""],
+    monkweapon : false,
+
+};
+
+WeaponsList["retractable claws"] = {
+
+    regExpSearch : /^(?=.*retractable claws).*$/i,
+    name : "Retractable Claws",
+    source : ["KT:AR"],
+    ability : 2,
+    type : "Natural",
+    damage : [1, 6, "slashing"],
+    range : "melee",
+    description : "",
+    abilitytodamage : true,
+    modifiers : ["Dex", ""],
+    monkweapon : false,
+
+};
+
+ArmourList["subdermal plating"] = {
+
+	regExpSearch : /^(?=.*subdermal plating).*$/i,
+	name : "Subdermal Plating",
+	source : ["KT:AR"],
+	type : "natural",
+	ac : 16,
+	dex : 2
+
+};
+
+// Thundersmith
+
+WeaponsList["thunder cannon"] = {
+
+    regExpSearch : /^(?=.*thunder cannon).*$/i,
+    name : "Thunder Cannon",
+    source : ["HB", 0],
+    ability : 2,
+    type : "Natural",
+    damage : [1, 12, "Piercing"],
+    range : "60/180 ft",
+    description : "Two-handed, loud, loading",
+    abilitytodamage : true,
+    modifiers : ["Dex", ""],
+    monkweapon : false,
+    weight : 15
+
+};
+
+WeaponsList["hand cannon"] = {
+
+    regExpSearch : /^(?=.*hand cannon).*$/i,
+    name : "Hand Cannon",
+    source : ["HB", 0],
+    ability : 2,
+    type : "Natural",
+    damage : [1, 8, "Piercing"],
+    range : "30/90 ft",
+    description : "Light, loud, loading",
+    abilitytodamage : true,
+    modifiers : ["Dex", ""],
+    monkweapon : false,
+    weight : 5
+
+};
+
+WeaponsList["kinetic hammer"] = {
+
+    regExpSearch : /^(?=.*kinetic hammer).*$/i,
+    name : "Kinetic Hammer",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 10, "bludgeoning"],
+    range : "Melee",
+    description : "Two-handed, heavy, loud, Charged (once per turn add 1d4 to damage)",
+    abilitytodamage : false,
+    modifiers : ["Str", ""],
+    monkweapon : true,
+    weight : 10
+
+};
+
+WeaponsList["charged blade"] = {
+
+    regExpSearch : /^(?=.*charged blade).*$/i,
+    name : "Charged Blade",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 6, "slashing"],
+    range : "melee",
+    description : "Finesse, loud, Charged (once per turn add 1d4 to damage)",
+    abilitytodamage : true,
+    modifiers : ["Str", ""],
+    monkweapon : false,
+    weight : 3
+
+};
+
+// Gadgetsmith
+
+WeaponsList["boomerang of hitting"] = {
+
+    regExpSearch : /^(?=.*boomerang of hitting).*$/i,
+    name : "Boomerang of Hitting",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 4, "Bludgeoning"],
+    range : "30/90 ft",
+    description : "Thrown. Finesse. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+WeaponsList["impact gauntlet"] = {
+
+    regExpSearch : /^(?=.*impact gauntlet).*$/i,
+    name : "Impact Gauntlet",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 8, "Bludgeoning"],
+    range : "Melee",
+    description : "Finesse. Light. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+WeaponsList["lightning baton"] = {
+
+    regExpSearch : /^(?=.*boomerang of hitting).*$/i,
+    name : "Boomerang of Hitting",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 4, "Bludgeoning"],
+    range : "30/90 ft",
+    description : "Thrown. Finesse. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+WeaponsList["repeating hand crossbow"] = {
+
+    regExpSearch : /^(?=.*boomerang of hitting).*$/i,
+    name : "Boomerang of Hitting",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 4, "Bludgeoning"],
+    range : "30/90 ft",
+    description : "Thrown. Finesse. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+// Infusionsmith
+
+
+// Potionsmith
+
+
+// Warsmith
+
+WeaponsList["mechplate gauntlet"] = {
+
+    regExpSearch : /^(?=.*mechplate gauntlet).*$/i,
+    name : "Mechplate Gauntlet",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 6, "Bludegoning"],
+    range : "Melee",
+    description : "While wearing this gauntlet, you have proficiency in Martial Weapons, unarmed strikes using this gauntlet deal 1d6 bludgeoning damage, and you learn the Shocking Grasp cantrip and can cast it through the gauntlet.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+WeaponsList["force blast"] = {
+
+    regExpSearch : /^(?=.*force blast).*$/i,
+    name : "Force Blast",
+    source : ["HB", 0],
+    ability : 4,
+    type : "Natural",
+    damage : [1, 8, "Force"],
+    range : "30 ft",
+    description : "You upgrade your Mechplate gauntlet to allow you to make a ranged spell attack.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+WeaponsList["power gauntlet"] = {
+
+    regExpSearch : /^(?=.*power gauntlet).*$/i,
+    name : "Power Gauntlet",
+    source : ["HB", 0],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 8, "Bludegoning"],
+    range : "Melee",
+    description : "Special: When you make an attack roll, you can choose to forgo adding your Proficiency modifier to the attack roll. If the attack hits, you can add double your Proficiency modifier to the damage roll.",
+    abilitytodamage : true,
+    monkweapon : false
+
+};
+
+ArmourList["mechplate"] = {
+
+    regExpSearch : /^(?=.*mechplate).*$/i,
+    name : "Mechplate",
+    source : ["HB", 0],
+    type : "heavy",
+    ac : 18,
+    stealthdis : true,
+    weight : 105,
+    description : "While wearing your Mechplate your Strength score increases by 2, and your maximum Strength score increase by the same amount. Additionally, you count as one size larger when determining the weight you can push, drag, or lift. A small creature wearing mechplate becomes a medium sized creature while wearing the mechplate."
+
+};
+
+ArmourList["mechsuit"] = {
+
+    regExpSearch : /^(?=.*mechsuit).*$/i,
+    name : "Mechsuit",
+    source : ["HB", 0],
+    type : "medium",
+    ac : 15,
+    stealthdis : false,
+    weight : 40,
+    description : "While wearing your Mechsuit your Strength score increases by 2, and your maximum Strength score increase by the same amount. Additionally, you count as one size larger when determining the weight you can push, drag, or lift. A small creature wearing mechsuit becomes a medium sized creature while wearing the mechsuit."
+
+};
