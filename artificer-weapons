@@ -169,14 +169,14 @@ WeaponsList["impact gauntlet"] = {
 
 WeaponsList["lightning baton"] = {
 
-    regExpSearch : /^(?=.*boomerang of hitting).*$/i,
-    name : "Boomerang of Hitting",
+    regExpSearch : /^(?=.*lightning baton).*$/i,
+    name : "Lightning Baton",
     source : ["HB", 0],
     ability : 1,
     type : "Natural",
     damage : [1, 4, "Bludgeoning"],
-    range : "30/90 ft",
-    description : "Thrown. Finesse. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
+    range : "Melee",
+    description : "Finesse. Light. Also deals 1d4 Lightning damage on a hit. On a critical, target must make Con save vs Spell DC or be stunned until the start of my next turn.",
     abilitytodamage : true,
     monkweapon : false
 
@@ -184,14 +184,14 @@ WeaponsList["lightning baton"] = {
 
 WeaponsList["repeating hand crossbow"] = {
 
-    regExpSearch : /^(?=.*boomerang of hitting).*$/i,
-    name : "Boomerang of Hitting",
+    regExpSearch : /^(?=.*repeating hand crossbow).*$/i,
+    name : "Repeating Hand Crossbow",
     source : ["HB", 0],
-    ability : 1,
+    ability : 2,
     type : "Natural",
-    damage : [1, 4, "Bludgeoning"],
-    range : "30/90 ft",
-    description : "Thrown. Finesse. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
+    damage : [1, 6, "Piercing"],
+    range : "30/120 ft",
+    description : "Ammunition. Light. Special: Does not require a free hand to load. Once per turn, when I attack with this weapon and have advantage on the attack, I can forgo the advantage in order to make an additional attack as a bonus action (also without advantage) against the same target.",
     abilitytodamage : true,
     monkweapon : false
 
