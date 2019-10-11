@@ -14,11 +14,66 @@ ClassSubList["artificer-thundersmith"] = {
             minlevel : 1,
             description : "\n   " + "At 1st level, I create a deadly weapon by harnessing the power of elemental thundering storms. This weapon requires attunement, I am proficient with it whilst attuned and can only be attuned to one Stormforged Weapon at a time. If I have multiple Stormforged Weapons I can change my attunement as a part of a long rest." + "\n   " + "If I lose my Stormforged Weapon or wish to create additional ones, I can do so over the course of three days (eight hours a day) by expending 200gp worth of raw materials. When making a new Stormforged weapon I can choose the same or a different type, and can select the same or different upgrades."
             ]),
-            eval : "AddWeapon('thunder cannon');",
-            removeeval : "RemoveWeapon('thunder cannon');",
+            
+        "thundermonger" : {
+
+			name : "Thundermonger",
+
+			minlevel : 3,
+
+			description : "\n   " + "At 3rd level, the elemental power of my weaponis so powerful that it's attacks can deal bonus thunder damage. When I hit with my Stormforged Weapon 1 can deal an extra  1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn." + "\n   " + "This extra damage increases by 1d6 when I reach certain levels in this class: 5th level (2d6), 7th level (3d6), 9th level (4d6), 11th level (5d6), 13th level (6d6), 15th level (7d6), 17th level (8d6), 19th level(9d6)." ,
+	    	additional : levels.map(function (n) {
+				return Math.ceil(n / 2) + "d6";
+				}),
+				calcChanges : {
+					atkAdd : [
+						function (fields, v) {
+							if (classes.known.artificer && ((/Thunder Cannon/i).test(v.WeaponText) || (/Hand Cannon/i).test(v.WeaponText) || (/Kinetic Hammer/i).test(v.WeaponText))) {
+								v.thunderMng = Math.ceil(classes.known.rogue.level / 2);
+								fields.Description += (fields.Description ? '; ' : '') + 'Sneak attack ' + v.thunderMng + 'd6 thunder damage';
+							};
+                            if (classes.known.artificer && ((/Charged Blade/i).test(v.WeaponText))) {
+								v.thunderMng = Math.ceil(classes.known.rogue.level / 2);
+								fields.Description += (fields.Description ? '; ' : '') + 'Thundermonger ' + v.thunderMng + 'd6 lightning damage';
+							};
+						},
+                    ]   
+               }
+        },
+
+		"devastating_blasts" : {
+			
+			name : "Devastating Blasts",
+			
+			minlevel : 5,
+			
+			description : "\n   " + "At 5th Level, when I miss an attack with my Thundering Weapon, I can apply Thundermonger damage to the target, dealing 1/2 of the bonus damage. This counds as applying Thundermonger damage for that turn.",
+		},
+
+		"unleashed_power" : {
+			
+			name : "Unleashed Power",
+			
+			minlevel : 14,
+			
+			description : "\n   " + "At 14th Level, when I roll damage for Thundermonger, or for my Stormforged Weapon, I can expend a spell slot to reroll a number of damage dice up to the level of the spell slot + my Int modifier (minimum one). I must use the new rolls.",
+		},
+
+
+"infusionsmith_upgrade" : {
+
+            name : "Specialization Upgrade",
+
+            minlevel : 3,
+
+            description : "\n   " + "Starting at 3rd level, I can choose an upgrade from the list at the end of my specialization, and gain the benefits listed in the description of the Upgrade." + "\n   " + "The number of  upgrades I have increases as shown in the class table.",
+
             additional : ["", "", "1 upgrade", "1 upgrade", "2 upgrades", "2 upgrades", "3 upgrades", "3 upgrades", "4 upgrades", "4 upgrades", "5 upgrades", "5 upgrades", "6 upgrades", "6 upgrades", "7 upgrades", "7 upgrades", "8 upgrades", "8 upgrades", "9 upgrades", "9 upgrades"],
-            extraname : "Cannonsmith Upgrades",
-            extrachoices : ["Autoloading Magazine (prereq: Integrated Magazine)", "Blast Shells (prereq: level 15 Artificer)", "Cannon Improvement (prereq: level 5 Artificer)", "Divination Scope (prereq: level 5 Artificer)", "Echoing Boom (prereq: Incompatible with Silencer)", "Extended Barrel", "Harpoon Reel (prereq: level 5 Artificer)", "Integrated Magazine", "Lightning Burst", "Lightning Charged Bayonet", "Overchannel Capacitor (prereq: level 5 Artificer)", "Silencer (prereq: Incompatible with Echoing Booms)", "Snap Fire (prereq: level 9 Artificer)", "Shock Absorber", "Shock Harpoon (prereq: level 9 Artificer, Harpoon Reel)", "Storm Blast (prereq: level 5 Artificer)", "Synaptic Feedback (prereq: level 9 Artificer)", "Turret Deployment (prereq: level 9 Artificer)"],
+
+            extraname : "Infusion Upgrades",
+
+            extrachoices : [ 
+            
             "autoloading magazine (prereq: integrated magazine)" : {
                 name : "Autoloading Magazine",
                 description : desc([
