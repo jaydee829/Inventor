@@ -3,7 +3,8 @@ Data for KibblesTasty's Artificer Class
 
 Class build in progress, based upon v.2.01 of KibblesTasty's Artificer
 
-Base Class
+Base Class - Basic run complete
+
 	Cursesmith - To do
   
 	Fleshmith - To do
