@@ -22,6 +22,8 @@ Base Class - Basic run complete
 	Warsmith - To do
   
 Spells - Basic Run Complete
+
 Feats - Basic Run Complete
+
 Weapons/Gadgets - To do
 
