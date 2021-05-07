@@ -172,8 +172,9 @@ AddSubClass("inventor", "thundersmith", {
                     atkAdd:[
                         function (fields,v) {
                             if (classes.known.inventor && (/ammunition|ammo/i.test(fields.Description))) {
-                                v.range = 30 + +/.+?(?=\/)/i.test(fields.Range); //fix this to return string not t/f
-                                v.longrange = /[^\/]*$/i.test(fields.Range) + 90
+                                v.range = 30 + +/.+?(?=\/)/i.exec(fields.Range)[0]; //fix this to return string not t/f
+                                v.longrange = 90 + +/[^\/]*$/i.exec(fields.Range)[0];
+                                fields.Range = v.range + '/' + v.longrange;
                             }
                         }
                     ]
