@@ -1,76 +1,185 @@
-ClassSubList["artificer-thundersmith"] = {
+AddSubClass("inventor", "thundersmith", {
     regExpSearch : /thundersmith/i,
+    source: ["KTI",22],
     subname : "Thundersmith",
     features : {
         "thundersmith_proficiency" : {
             name : "Thundersmith Proficiency",
+            source: ["KTI", 22],
             minlevel : 1,
-            description : "\n   " + "I gain proficiency with tinker's tools and smith's tools." + "\n   " + "If my weapon requires ammunition, I gain knowledge of how to forge and greate them with Smithing tools and I can create up to 50 rounds of ammunition during a long rest. Material cost: 1gp per 10 rounds"
+            description : "\n   " + "I gain proficiency with tinker's tools and smith's tools." + "\n   " + "If my weapon requires ammunition, I can create up to 50 rounds of ammunition during a long rest. Material cost: 1gp per 10 rounds"
             ,
             toolProfs : [["Smith's Tools", "Dex"], ["Tinker's Tools", "Dex"]]
         },
         "stormforged_weapon" : {
             name : "Stormforged Weapon",
+            source: ["KTI", 22],
             minlevel : 1,
-            description : "\n   " + "At 1st level, I create a deadly weapon by harnessing the power of elemental thundering storms. This weapon requires attunement, I am proficient with it whilst attuned and can only be attuned to one Stormforged Weapon at a time. If I have multiple Stormforged Weapons I can change my attunement as a part of a long rest." + "\n   " + "If I lose my Stormforged Weapon or wish to create additional ones, I can do so over the course of three days (eight hours a day) by expending 200gp worth of raw materials. When making a new Stormforged weapon I can choose the same or a different type, and can select the same or different upgrades."
+            description : desc([
+                "I create a deadly weapon by harnessing the power of elemental thundering storms. This weapon requires attunement, I am proficient with it whilst attuned and can only be attuned to one Stormforged Weapon at a time. If I have multiple Stormforged Weapons I can change my attunement as a part of a long rest.",
+                "If I lose my Stormforged Weapon or wish to create additional ones, I can do so over the course of three days (eight hours a day) by expending 200gp worth of raw materials. When making a new Stormforged weapon I can choose the same or a different type, and can select the same or different upgrades.",
+                "Use the \"Choose Feature\" button above to add a Stormforged Weapon",
             ]),
+            extraname: "Stormforged Weapon",
+            extraTimes: 1,
+            extrachoices: ["Thunder Cannon", "Hand Cannon", "Kinetic Hammer", "Charged Blade", "Lightning Pike"],
+            "thunder cannon": {
+                name: "Thunder Cannon",
+                source: ["KTI", 22],
+                description: desc(["I use the power of Thunder to launch a projectile of terrible power, if limited accuracy, over long distances."]),
+                eval: function(lvl, chc) {AddMagicItem("Thunder Cannon");},
+                removeeval: function (lvl, chc) {
+					var loc = CurrentMagicItems.known.indexOf("thunder cannon");
+					if (loc == -1) return;
+					MagicItemClear(loc + 1, true);
+				}
+            },
+            "lightning pike": {
+                name: "Lightning Pike",
+                source: ["KTI", 22],
+                description: desc(["I create a charged blade and stick it to the end of a pole, making it more unwieldy, but with deadly reach."]),
+                eval: function(lvl, chc) {AddMagicItem("Lightning Pike");},
+                removeeval: function (lvl, chc) {
+					var loc = CurrentMagicItems.known.indexOf("lightning pike");
+					if (loc == -1) return;
+					MagicItemClear(loc + 1, true);
+				}
+            },
+            "kinetic hammer": {
+                name: "Kinetic Hammer",
+                source: ["KTI", 22],
+                description: desc(["I keep the thundering power of a cannon imbued in a weapon, allowing it to apply devastating force."]),
+                eval: function(lvl, chc) {AddMagicItem("Kinetic Hammer");},
+                removeeval: function (lvl, chc) {
+					var loc = CurrentMagicItems.known.indexOf("kinetic hammer");
+					if (loc == -1) return;
+					MagicItemClear(loc + 1, true);
+				}
+            },
+            "charged blade": {
+                name: "Charged Blade",
+                source: ["KTI", 22],
+                description: desc(["I channel the power of an elemental storm directly into a blade."]),
+                eval: function(lvl, chc) {AddMagicItem("Charged Blade");},
+                removeeval: function (lvl, chc) {
+					var loc = CurrentMagicItems.known.indexOf("charged blade");
+					if (loc == -1) return;
+					MagicItemClear(loc + 1, true);
+				}
+            },
+            "hand cannon": {
+                name: "Hand Cannon",
+                source: ["KTI", 22],
+                description: desc(["I use thundering power to launch a projectile with all the force of a Cannon, but without the long range or barrel."]),
+                eval: function(lvl, chc) {AddMagicItem("Hand Cannon");},
+                removeeval: function (lvl, chc) {
+					var loc = CurrentMagicItems.known.indexOf("hand cannon");
+					if (loc == -1) return;
+					MagicItemClear(loc + 1, true);
+				}
+            },
             
         "thundermonger" : {
-
 			name : "Thundermonger",
-
+            source: ["KTI", 23],
 			minlevel : 3,
-
-			description : "\n   " + "At 3rd level, the elemental power of my weaponis so powerful that it's attacks can deal bonus thunder damage. When I hit with my Stormforged Weapon 1 can deal an extra  1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn." + "\n   " + "This extra damage increases by 1d6 when I reach certain levels in this class: 5th level (2d6), 7th level (3d6), 9th level (4d6), 11th level (5d6), 13th level (6d6), 15th level (7d6), 17th level (8d6), 19th level(9d6)." ,
+			description : desc([
+                "When I hit with my Stormforged Weapon 1 can deal an extra  1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn.",
+                "This extra damage increases by 1d6 every 2nd level I take in Inventor.",
+            ]),
 	    	additional : levels.map(function (n) {
-				return Math.ceil(n / 2) + "d6";
+				return Math.floor(n / 2) + "d6";
 				}),
-				calcChanges : {
-					atkAdd : [
-						function (fields, v) {
-							if (classes.known.artificer && ((/Thunder Cannon/i).test(v.WeaponText) || (/Hand Cannon/i).test(v.WeaponText) || (/Kinetic Hammer/i).test(v.WeaponText))) {
-								v.thunderMng = Math.ceil(classes.known.rogue.level / 2);
-								fields.Description += (fields.Description ? '; ' : '') + 'Sneak attack ' + v.thunderMng + 'd6 thunder damage';
-							};
-                            if (classes.known.artificer && ((/Charged Blade/i).test(v.WeaponText))) {
-								v.thunderMng = Math.ceil(classes.known.rogue.level / 2);
-								fields.Description += (fields.Description ? '; ' : '') + 'Thundermonger ' + v.thunderMng + 'd6 lightning damage';
-							};
-						},
-                    ]   
-               }
+            calcChanges : {
+                atkAdd : [
+                    function (fields, v) {
+                        if (classes.known.inventor && ((/stormforged/i).test(v.theWea.list))) {
+                            v.thunderMng = Math.floor(classes.known.inventor.level / 2);
+                            fields.Description += (fields.Description ? '; ' : '') + 'Thundermonger ' + v.thunderMng + 'd6 lightning dmg';
+                        };
+                    },
+                ]   
+            }
         },
 
 		"devastating_blasts" : {
-			
 			name : "Devastating Blasts",
-			
+            source: ["KTI", 23],
 			minlevel : 5,
-			
-			description : "\n   " + "At 5th Level, when I miss an attack with my Thundering Weapon, I can apply Thundermonger damage to the target, dealing 1/2 of the bonus damage. This counds as applying Thundermonger damage for that turn.",
+			description : "\n   " + "When I miss an attack with my Thundering Weapon, I can apply Thundermonger damage to the target, dealing 1/2 of the bonus damage. This counds as applying Thundermonger damage for that turn.",
 		},
 
 		"unleashed_power" : {
-			
 			name : "Unleashed Power",
-			
+            source: ["KTI", 23],
 			minlevel : 14,
-			
-			description : "\n   " + "At 14th Level, when I roll damage for Thundermonger, or for my Stormforged Weapon, I can expend a spell slot to reroll a number of damage dice up to the level of the spell slot + my Int modifier (minimum one). I must use the new rolls.",
+			description : "\n   " + "When I roll damage for Thundermonger, or for my Stormforged Weapon, I can expend a spell slot to reroll a number of damage dice up to the level of the spell slot + my Int modifier (minimum one). I must use the new rolls.",
 		},
 
-
-"infusionsmith_upgrade" : {
-
+        "thundersmith_upgrades" : {
             name : "Specialization Upgrade",
-
+            source: ["KTI", 4],
             minlevel : 3,
+            description : desc([
+                "Use the \"Choose Feature\" button above to add Upgrades to the third page",
+                "Whenever I gain an Inventor level, I can replace an upgrade I know with another of the same level requirement",
+                "I cannot select an upgrade more than once unless the description says otherwise",
+            ]),
+            additional : levels.map(function (n) {
+                return n < 2 ? "" : (n < 5 ? 1 : n < 7 ? 2 : n < 9 ? 3 : n < 11 ? 4 : n < 13 ? 5 : n < 15 ? 6 : n < 17 ? 7 : n < 19 ? 8 : 9) + " upgrades";
+            }),
+            extraname : "Thundersmith Upgrades",
+            extraTimes : levels.map(function (n) {
+                return n < 2 ? 0 : n < 5 ? 2 : n < 7 ? 3 : n < 9 ? 4 : n < 12 ? 5 : n < 15 ? 6 : n < 18 ? 7 : 8;
+            }),
+            extrachoices : [
+                // Unrestricted
+                "Adaptable Weapon", "Arcane Lightning", "Extended Range", "Lightning Burst", "Point Blank (prereq: Hand Cannon)", "Silencer (incompatible w/ Echoing Boom)", "Shock Absorber", "Twin Thunder", "Weapon Improvement",
 
-            description : "\n   " + "Starting at 3rd level, I can choose an upgrade from the list at the end of my specialization, and gain the benefits listed in the description of the Upgrade." + "\n   " + "The number of  upgrades I have increases as shown in the class table.",
+                //Lvl 5
+                "Echoing Boom (prereq: lvl 5 inventor; incompatible w/ Silencer)", "Harpoon Reel (prereq: lvl 5 inventor)", "Terrifying Thunder (prereq: lvl 5 inventor, Echoing Boom)", "Storm Blast (prereq: lvl 5 inventor",
 
-            additional : ["", "", "1 upgrade", "1 upgrade", "2 upgrades", "2 upgrades", "3 upgrades", "3 upgrades", "4 upgrades", "4 upgrades", "5 upgrades", "5 upgrades", "6 upgrades", "6 upgrades", "7 upgrades", "7 upgrades", "8 upgrades", "8 upgrades", "9 upgrades", "9 upgrades"],
+                //Lvl 9
+                "Elemental Swapping (prereq: lvl 9 inventor)", "Mortal Shells (prereq: lvl 9 inventor, Ammunition property)", "Ride the Lightning (prereq: lvl 9 inventor, Lightning Burst)", "Shock Harpoon (prereq: lvl 9 inventor, Harpoon Reel)", "Synaptic Feedback (prereq: lvl 9 inventor)", "Thunder Jump (prereq: lvl 9 inventor)",
 
-            extraname : "Infusion Upgrades",
+                //Lvl 11
+                "Backblast (prereq: lvl 11 inventor)", "Blast Radius (prereq: lvl 11 inventor)", "Stabilization (prereq: lvl 11 inventor)",
+
+                //Lvl 15
+                "Massive Overload (prereq: lvl 15 inventor, Storm Blast or Lightning Burst)", "Masterwork Weapon (prereq: lvl 15 inventor, Weapon Improvement)"
+            ],
+
+            "adaptable weapon": {
+                name: "Adaptable Weapon",
+                source: ["KTI", 23],
+                description: desc([
+                    "I can adapt a wpn w/o the Ammunition property to have a secondary attack giving it the functionality of a Hand Cannon",
+                    "or I can give a wpn w/ the Ammunition propery a secondary attack with the properties of a Charged Blade",
+                ]),
+            },
+            "arcane lightning": {
+                name: "Arcane Lightning",
+                source: ["KTI", 23],
+                description: desc(["My mastery of lightning and thunder magic has allowed me to learn additional spells"]),
+                spellcastingExtra: ["thunderwave", "shatter", "lightning bolt", "storm sphere"],
+                spellcastingExtraApplyNonconform: true,
+            },
+            "extended range": {
+                name: "Extended Range",
+                source: ["KTI", 23],
+                description: desc(["I extend the reach of my Stormforged weapon"]),
+                calcChanges: {
+                    atkAdd:[
+                        function (fields,v) {
+                            if (classes.known.inventor && (/ammunition|ammo/i.test(fields.Description))) {
+                                v.range = 30 + +/.+?(?=\/)/i.test(fields.Range); //fix this to return string not t/f
+                                v.longrange = /[^\/]*$/i.test(fields.Range) + 90
+                            }
+                        }
+                    ]
+                }
+            }
+            
 
             extrachoices : [ 
             

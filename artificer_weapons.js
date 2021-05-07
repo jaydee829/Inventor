@@ -66,73 +66,88 @@ ArmourList["subdermal plating"] = {
 };
 
 // Thundersmith
-
 WeaponsList["thunder cannon"] = {
 
     regExpSearch : /^(?=.*thunder cannon).*$/i,
     name : "Thunder Cannon",
-    source : ["HB", 0],
+    source : ["KTI", 22],
     ability : 2,
     type : "Natural",
     damage : [1, 12, "Piercing"],
     range : "60/180 ft",
-    description : "Two-handed, loud, loading",
+    description : "Ammunition, Two-handed, Loud, Stormcharged",
     abilitytodamage : true,
     modifiers : ["Dex", ""],
-    monkweapon : false,
-    weight : 15
-
+    weight : 15,
+    isMagicWeapon: true,
+    list: "stormforged",
 };
 
 WeaponsList["hand cannon"] = {
 
     regExpSearch : /^(?=.*hand cannon).*$/i,
     name : "Hand Cannon",
-    source : ["HB", 0],
+    source : ["KTI", 22],
     ability : 2,
     type : "Natural",
-    damage : [1, 8, "Piercing"],
+    damage : [1, 10, "Piercing"],
     range : "30/90 ft",
-    description : "Light, loud, loading",
+    description : "Ammunition, Light, Loud, Stormcharged",
     abilitytodamage : true,
     modifiers : ["Dex", ""],
-    monkweapon : false,
-    weight : 5
-
+    weight : 5,
+    isMagicWeapon: true,
+    list: "stormforged",
 };
 
 WeaponsList["kinetic hammer"] = {
 
     regExpSearch : /^(?=.*kinetic hammer).*$/i,
     name : "Kinetic Hammer",
-    source : ["HB", 0],
+    source : ["KTI", 22],
     ability : 1,
     type : "Natural",
     damage : [1, 10, "bludgeoning"],
     range : "Melee",
-    description : "Two-handed, heavy, loud, Charged (once per turn add 1d4 to damage)",
+    description : "+1d4 thunder; Two-handed, Heavy, Loud",
     abilitytodamage : false,
     modifiers : ["Str", ""],
-    monkweapon : true,
-    weight : 10
-
+    weight : 10,
+    isMagicWeapon: true,
+    list: "stormforged"
 };
 
 WeaponsList["charged blade"] = {
 
     regExpSearch : /^(?=.*charged blade).*$/i,
     name : "Charged Blade",
-    source : ["HB", 0],
+    source : ["KTI", 22],
     ability : 1,
     type : "Natural",
     damage : [1, 6, "slashing"],
-    range : "melee",
-    description : "Finesse, loud, Charged (once per turn add 1d4 to damage)",
+    range : "Melee",
+    description : "+1d4 lightning, Finesse, Loud",
     abilitytodamage : true,
     modifiers : ["Str", ""],
-    monkweapon : false,
-    weight : 3
+    weight : 3,
+    isMagicWeapon: true,
+    list: "stormforged",
+};
 
+WeaponsList["lightning pike"] = {
+    regExpSearch: /^(?=.*lightning pike).*$/i,
+    name: "Lightning Pike",
+    source: ["KTI", 22],
+    ability: 1,
+    type: "Natural",
+    damage: [1, 8, "piercing"],
+    range: "Melee",
+    description: "+1d4 lightning, Reach, Two-Handed, Loud",
+    abilitytodamage: true,
+    modifiers: ["Str", ""],
+    weight: 10,
+    isMagicWeapon: true,
+    list: "stormforged",
 };
 
 // Gadgetsmith
