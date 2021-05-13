@@ -4,66 +4,69 @@
 
 */
 
+var iFileName = "Inventor - Weapons.js";
+RequiredSheetVersion(13);
+
 //Fleshsmith weapons and armor
 
-WeaponsList["extra fangs"] = {
+// WeaponsList["extra fangs"] = {
 
-    regExpSearch : /^(?=.*extra fangs).*$/i,
-    name : "Extra Fangs",
-    source : ["KT:AR"],
-    ability : 2,
-    type : "Natural",
-    damage : [1, 6, "Piercing"],
-    range : "melee",
-    description : "",
-    abilitytodamage : true,
-    modifiers : ["Dex", ""],
-    monkweapon : false,
+//     regExpSearch : /^(?=.*extra fangs).*$/i,
+//     name : "Extra Fangs",
+//     source : ["KT:AR"],
+//     ability : 2,
+//     type : "Natural",
+//     damage : [1, 6, "Piercing"],
+//     range : "melee",
+//     description : "",
+//     abilitytodamage : true,
+//     modifiers : ["Dex", ""],
+//     monkweapon : false,
 
-};
+// };
 
-WeaponsList["extra tentacle"] = {
+// WeaponsList["extra tentacle"] = {
 
-    regExpSearch : /^(?=.*extra tentacle).*$/i,
-    name : "Extra Tentacle",
-    source : ["KT:AR"],
-    ability : 1,
-    type : "Natural",
-    damage : [1, 4, "bludgeoning"],
-    range : "melee",
-    description : "has reach",
-    abilitytodamage : true,
-    modifiers : ["Str", ""],
-    monkweapon : false,
+//     regExpSearch : /^(?=.*extra tentacle).*$/i,
+//     name : "Extra Tentacle",
+//     source : ["KT:AR"],
+//     ability : 1,
+//     type : "Natural",
+//     damage : [1, 4, "bludgeoning"],
+//     range : "melee",
+//     description : "has reach",
+//     abilitytodamage : true,
+//     modifiers : ["Str", ""],
+//     monkweapon : false,
 
-};
+// };
 
-WeaponsList["retractable claws"] = {
+// WeaponsList["retractable claws"] = {
 
-    regExpSearch : /^(?=.*retractable claws).*$/i,
-    name : "Retractable Claws",
-    source : ["KT:AR"],
-    ability : 2,
-    type : "Natural",
-    damage : [1, 6, "slashing"],
-    range : "melee",
-    description : "",
-    abilitytodamage : true,
-    modifiers : ["Dex", ""],
-    monkweapon : false,
+//     regExpSearch : /^(?=.*retractable claws).*$/i,
+//     name : "Retractable Claws",
+//     source : ["KT:AR"],
+//     ability : 2,
+//     type : "Natural",
+//     damage : [1, 6, "slashing"],
+//     range : "melee",
+//     description : "",
+//     abilitytodamage : true,
+//     modifiers : ["Dex", ""],
+//     monkweapon : false,
 
-};
+// };
 
-ArmourList["subdermal plating"] = {
+// ArmourList["subdermal plating"] = {
 
-	regExpSearch : /^(?=.*subdermal plating).*$/i,
-	name : "Subdermal Plating",
-	source : ["KT:AR"],
-	type : "natural",
-	ac : 16,
-	dex : 2
+// 	regExpSearch : /^(?=.*subdermal plating).*$/i,
+// 	name : "Subdermal Plating",
+// 	source : ["KT:AR"],
+// 	type : "natural",
+// 	ac : 16,
+// 	dex : 2
 
-};
+// };
 
 // Thundersmith
 WeaponsList["thunder cannon"] = {
@@ -149,6 +152,19 @@ WeaponsList["lightning pike"] = {
     isMagicWeapon: true,
     list: "stormforged",
 };
+
+WeaponsList["harpoon reel"] = {
+    regExpSearch: /^(?=.*harpoon reel).*$/i,
+    name: "Harpoon Reel",
+    source: ["KTI", 24],
+    ability: 2,
+    abilitytodamage: false,
+    type: "AlwaysProf",
+    damage: [1, 6, "piercing"],
+    range: "30/60 ft",
+    modifiers: ["Dex", ""],
+    description: "Attached to tgt by 60' cord; Tgt remove using action, 1d6 piercing"
+}
 
 // Gadgetsmith
 

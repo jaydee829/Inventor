@@ -118,6 +118,13 @@ ClassList["inventor"] = {
             }]
         },
 
+        "subclassfeature1": {
+            name: "Inventor Specialization",
+            source: ["KTI", 3],
+            minlevel: 1,
+            description: desc(["Choose a specialization based on your craft and put it in the \"Class\" field on the first page"])
+        },
+
         "spellcasting" : {
             name : "Spellcasting",
 			source : ["KTI", 3],
