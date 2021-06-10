@@ -1,3 +1,5 @@
+// NOT UPDATED!!!!
+
 ClassSubList["artificer-infusionsmith"] = {
 
     regExpSearch : /infusionsmith/i,

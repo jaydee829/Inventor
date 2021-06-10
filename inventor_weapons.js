@@ -1,9 +1,3 @@
-/*
-
-    Wonderous Class Items
-
-*/
-
 var iFileName = "Inventor - Weapons.js";
 RequiredSheetVersion(13);
 
@@ -185,65 +179,87 @@ MagicItemsList["stormforged weapon"] = {
     },
 };
 
+// Warsmith
+WeaponsList["force blast"] = {
+    regExpSearch : /^(?=.*force blast).*$/i,
+    name : "Force Blast",
+    source : ["HB", 28],
+    ability : 4,
+    type : "Natural",
+    damage : [1, 8, "Force"],
+    range : "60 ft",
+    description : "Ranged spell attack, can be used in place of one attack.",
+    abilitytodamage : true,
+    monkweapon : false
+};
+WeaponsList["power fist"] = {
+    regExpSearch : /^(?=.*power fist).*$/i,
+    name : "Power Fist",
+    source : ["HB", 29],
+    ability : 1,
+    type : "Natural",
+    damage : [1, 8, "Bludegoning"],
+    range : "Melee",
+    description : "Light, Special: When you make an attack roll, you can choose to forgo adding your Proficiency modifier to the attack roll. If the attack hits, you can add double your Proficiency modifier to the damage roll.",
+    abilitytodamage : true,
+    monkweapon : false
+};
+ArmourList["warplate"] = {
+    regExpSearch : /^(?=.*warplate).*$/i,
+    name : "Warplate",
+    source : ["HB", 27],
+    type : "heavy",
+    ac: 18,
+    dex: 0,
+    stealthdis : true,
+    weight: 65,
+    carryingCapacity: 2,
+    scores: [2, 0, 0, 0, 0, 0],
+    scoresMaximum: [22, 0, 0, 0, 0, 0],
+    description : "While wearing your Warplate your Strength score increases by 2, and your maximum Strength score increase by the same amount. Additionally, you count as one size larger when determining the weight you can push, drag, or lift. A small creature wearing Warplate becomes a medium sized creature while wearing the Warplate."
+};
+ArmourList["warsuit"] = {
+    regExpSearch: /^(?=.*warsuit).*$/i,
+    name: "Warsuit",
+    source: ["HB", 27],
+    type: "medium",
+    ac: 14,
+    dex: 2,
+    stealthdis: false,
+    weight: 20,
+    carryingCapacity: 1,
+    scores: [2, 0, 0, 0, 0, 0],
+    scoresMaximum: [22, 0, 0, 0, 0, 0],
+    description: "While wearing your Warsuit your Strength score increases by 2, and your maximum Strength score increase by the same amount."
+};
+ArmourList["integrated armor"] = {
+    regExpSearch: /^(?=.*integrated).*$/i,
+    name: "Integrated Armor",
+    source: ["HB", 27],
+    type: "medium",
+    ac: 14,
+    dex: 2,
+    stealthdis: false,
+    weight: 0,
+    carryingCapacity: 2,
+    scores: [2, 0, 0, 0, 0, 0],
+    scoresMaximum: [22, 0, 0, 0, 0, 0],
+    description: "While \"wearing\" your Integrated Armor, your Strength score increases by 2, and your maximum Strength score increase by the same amount. Additionally, you count as one size larger when determining the weight you can push, drag, or lift."
+};
+
 // Gadgetsmith
-
-// WeaponsList["boomerang of hitting"] = {
-
-//     regExpSearch : /^(?=.*boomerang of hitting).*$/i,
-//     name : "Boomerang of Hitting",
-//     source : ["HB", 0],
-//     ability : 1,
-//     type : "Natural",
-//     damage : [1, 4, "Bludgeoning"],
-//     range : "30/90 ft",
-//     description : "Thrown. Finesse. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
-//     abilitytodamage : true,
-//     monkweapon : false
-
-// };
-
-// WeaponsList["impact gauntlet"] = {
-
-//     regExpSearch : /^(?=.*impact gauntlet).*$/i,
-//     name : "Impact Gauntlet",
-//     source : ["HB", 0],
-//     ability : 1,
-//     type : "Natural",
-//     damage : [1, 8, "Bludgeoning"],
-//     range : "Melee",
-//     description : "Finesse. Light. Special: When this weapon is thrown, you can make target two targets within 10 feet of each other, making a seperate attack roll against each target.",
-//     abilitytodamage : true,
-//     monkweapon : false
-
-// };
-
-// WeaponsList["lightning baton"] = {
-
-//     regExpSearch : /^(?=.*lightning baton).*$/i,
-//     name : "Lightning Baton",
-//     source : ["HB", 0],
-//     ability : 1,
-//     type : "Natural",
-//     damage : [1, 4, "Bludgeoning"],
-//     range : "Melee",
-//     description : "Finesse. Light. Also deals 1d4 Lightning damage on a hit. On a critical, target must make Con save vs Spell DC or be stunned until the start of my next turn.",
-//     abilitytodamage : true,
-//     monkweapon : false
-
-// };
-
-// WeaponsList["repeating hand crossbow"] = {
-
-//     regExpSearch : /^(?=.*repeating hand crossbow).*$/i,
-//     name : "Repeating Hand Crossbow",
-//     source : ["HB", 0],
-//     ability : 2,
-//     type : "Natural",
-//     damage : [1, 6, "Piercing"],
-//     range : "30/120 ft",
-//     description : "Ammunition. Light. Special: Does not require a free hand to load. Once per turn, when I attack with this weapon and have advantage on the attack, I can forgo the advantage in order to make an additional attack as a bonus action (also without advantage) against the same target.",
-//     abilitytodamage : true,
-//     monkweapon : false
+WeaponsList["boomerang of hitting"] = {
+    regExpSearch : /^(?=.*boomerang of hitting).*$/i,
+    name : "Boomerang of Hitting",
+    source : ["HB", 0],
+    ability : 2,
+    type : "Natural",
+    damage : [1, 4, "Bludgeoning"],
+    range : "30/60 ft",
+    description : "Thrown. Finesse. Special: When this weapon is Thrown, you can make target up three seperate targets within 10 feet of each other, making a seperate attack roll against each target.",
+    abilitytodamage : true,
+    monkweapon : true
+};
 
 // };
 
@@ -252,76 +268,3 @@ MagicItemsList["stormforged weapon"] = {
 
 // // Potionsmith
 
-
-// // Warsmith
-
-// WeaponsList["mechplate gauntlet"] = {
-
-//     regExpSearch : /^(?=.*mechplate gauntlet).*$/i,
-//     name : "Mechplate Gauntlet",
-//     source : ["HB", 0],
-//     ability : 1,
-//     type : "Natural",
-//     damage : [1, 6, "Bludegoning"],
-//     range : "Melee",
-//     description : "While wearing this gauntlet, you have proficiency in Martial Weapons, unarmed strikes using this gauntlet deal 1d6 bludgeoning damage, and you learn the Shocking Grasp cantrip and can cast it through the gauntlet.",
-//     abilitytodamage : true,
-//     monkweapon : false
-
-// };
-
-// WeaponsList["force blast"] = {
-
-//     regExpSearch : /^(?=.*force blast).*$/i,
-//     name : "Force Blast",
-//     source : ["HB", 0],
-//     ability : 4,
-//     type : "Natural",
-//     damage : [1, 8, "Force"],
-//     range : "30 ft",
-//     description : "You upgrade your Mechplate gauntlet to allow you to make a ranged spell attack.",
-//     abilitytodamage : true,
-//     monkweapon : false
-
-// };
-
-// WeaponsList["power gauntlet"] = {
-
-//     regExpSearch : /^(?=.*power gauntlet).*$/i,
-//     name : "Power Gauntlet",
-//     source : ["HB", 0],
-//     ability : 1,
-//     type : "Natural",
-//     damage : [1, 8, "Bludegoning"],
-//     range : "Melee",
-//     description : "Special: When you make an attack roll, you can choose to forgo adding your Proficiency modifier to the attack roll. If the attack hits, you can add double your Proficiency modifier to the damage roll.",
-//     abilitytodamage : true,
-//     monkweapon : false
-
-// };
-
-// ArmourList["mechplate"] = {
-
-//     regExpSearch : /^(?=.*mechplate).*$/i,
-//     name : "Mechplate",
-//     source : ["HB", 0],
-//     type : "heavy",
-//     ac : 18,
-//     stealthdis : true,
-//     weight : 105,
-//     description : "While wearing your Mechplate your Strength score increases by 2, and your maximum Strength score increase by the same amount. Additionally, you count as one size larger when determining the weight you can push, drag, or lift. A small creature wearing mechplate becomes a medium sized creature while wearing the mechplate."
-
-// };
-
-// ArmourList["mechsuit"] = {
-
-//     regExpSearch : /^(?=.*mechsuit).*$/i,
-//     name : "Mechsuit",
-//     source : ["HB", 0],
-//     type : "medium",
-//     ac : 15,
-//     stealthdis : false,
-//     weight : 40,
-//     description : "While wearing your Mechsuit your Strength score increases by 2, and your maximum Strength score increase by the same amount. Additionally, you count as one size larger when determining the weight you can push, drag, or lift. A small creature wearing mechsuit becomes a medium sized creature while wearing the mechsuit."
-
-// };
