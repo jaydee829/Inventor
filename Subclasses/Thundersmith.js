@@ -88,18 +88,18 @@ AddSubClass("inventor", "thundersmith", {
             source: ["KTI", 23],
 			minlevel : 3,
 			description : desc([
-                "When I hit with my Stormforged Weapon 1 can deal an extra  1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn.",
+                "When I hit with my Stormforged Weapon 1 can deal an extra 1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn.",
                 "This extra damage increases by 1d6 every 2nd level I take in Inventor.",
             ]),
 	    	additional : levels.map(function (n) {
 				return Math.floor(n / 2) + "d6";
 				}),
             calcChanges : {
-                atkAdd : [
-                    function (fields, v) {
-                        if (classes.known.inventor && ((/stormforged/i).test(v.theWea.list))) {
-                            v.thunderMng = Math.floor(classes.known.inventor.level / 2);
-                            fields.Description += (fields.Description ? '; ' : '') + 'Thundermonger ' + v.thunderMng + 'd6 lightning dmg';
+                atkCalc : [
+                    function (fields, v, output) {
+                        if (classes.known.inventor && v.theWea.list == 'stormforged') {
+                            output.thunderMng = Math.floor(classes.known.inventor.level / 2);
+                            fields.Description += (fields.Description ? '; ' : '') + 'Thundermonger ' + output.thunderMng + 'd6 lightning dmg';
                         };
                     },
                 ]   
@@ -112,7 +112,7 @@ AddSubClass("inventor", "thundersmith", {
 			name : "Devastating Blasts",
             source: ["KTI", 23],
 			minlevel : 5,
-			description : "\n   " + "When I miss an attack with my Thundering Weapon, I can apply Thundermonger damage to the target, dealing 1/2 of the bonus damage. This counds as applying Thundermonger damage for that turn.",
+			description : "\n   " + "When I miss an attack with my Stormforged Weapon, I can apply Thundermonger damage to the target, dealing 1/2 of the bonus damage. This counds as applying Thundermonger damage for that turn.",
 		},
 
 		"subclassfeature14" : {
@@ -143,10 +143,10 @@ AddSubClass("inventor", "thundersmith", {
                 "Adaptable Weapon", "Arcane Lightning", "Extended Range", "Lightning Burst", "Point Blank (prereq: Hand Cannon)", "Silencer (incompatible w/ Echoing Boom)", "Shock Absorber", "Twin Thunder", "Weapon Improvement",
 
                 //Lvl 5
-                "Echoing Boom (prereq: lvl 5 inventor; incompatible w/ Silencer)", "Harpoon Reel (prereq: lvl 5 inventor)", "Terrifying Thunder (prereq: lvl 5 inventor, Echoing Boom)", "Storm Blast (prereq: lvl 5 inventor",
+                "Echoing Boom (prereq: lvl 5 inventor; incompatible w/ Silencer)", "Harpoon Reel (prereq: lvl 5 inventor)", "Terrifying Thunder (prereq: lvl 5 inventor, Echoing Boom)", "Storm Blast (prereq: lvl 5 inventor)",
 
                 //Lvl 9
-                "Elemental Swapping (prereq: lvl 9 inventor)", "Mortal Shells (prereq: lvl 9 inventor, Ammunition property)", "Ride the Lightning (prereq: lvl 9 inventor, Lightning Burst)", "Shock Harpoon (prereq: lvl 9 inventor, Harpoon Reel)", "Synaptic Feedback (prereq: lvl 9 inventor)", "Thunder Jump (prereq: lvl 9 inventor)",
+                "Elemental Swapping (prereq: lvl 9 inventor)", "Mortar Shells (prereq: lvl 9 inventor, Ammunition property)", "Ride the Lightning (prereq: lvl 9 inventor, Lightning Burst)", "Shock Harpoon (prereq: lvl 9 inventor, Harpoon Reel)", "Synaptic Feedback (prereq: lvl 9 inventor)", "Thunder Jump (prereq: lvl 9 inventor)",
 
                 //Lvl 11
                 "Backblast (prereq: lvl 11 inventor)", "Blast Radius (prereq: lvl 11 inventor)", "Stabilization (prereq: lvl 11 inventor)",
@@ -201,7 +201,7 @@ AddSubClass("inventor", "thundersmith", {
                 action: ["action", ""],
                 additional: "event.value = 'DC'+ 8 + What('Proficiency Bonus') + What('Int Mod')"
             },
-            "point blank": {
+            "point blank (prereq: hand cannon)": {
                 name: "Point Blank",
                 source: ["KTI", 24],
                 description: desc([
@@ -213,7 +213,7 @@ AddSubClass("inventor", "thundersmith", {
                 },
                 action: ["reaction", " - Opportunity Attack"],
             },
-            "silencer": {
+            "silencer (incompatible w/ echoing boom)": {
                 name: "Silencer",
                 source: ["KTI", 24],
                 description: desc([
@@ -221,7 +221,7 @@ AddSubClass("inventor", "thundersmith", {
                 ]),
                 additional: "Incompatible w/ Echoing Boom",
                 prereqeval: function(v) {
-                    return !GetFeatureChoice('classes', 'inventor','subclassfeature3.1', true).includes('echoing boom');
+                    return GetFeatureChoice('classes', 'inventor','subclassfeature3.1', true).indexOf('echoing boom (prereq: lvl 5 inventor; incompatible w/ silencer)' == -1);
                 },
                 calcChanges: {
                     atkAdd:[
@@ -277,18 +277,34 @@ AddSubClass("inventor", "thundersmith", {
                 description: desc([
                     "My Stormforged wpn gains +1 to atk and dmg rolls. This does not stack with Arcane Retrofit."
                 ]),
-                //TODO: make the stormforged weapon a +1
+                calcChanges: {
+                    atkCalc: [
+                        function(fields, v, output) {
+                            if (v.theWea.list == 'stormforged' && output.magic == 0) {
+                                output.magic = 1;
+                            };
+                        }
+                    ]
+                }
             },
-            "echoing boom": {
+            "echoing boom (prereq: lvl 5 inventor; incompatible w/ silencer)": {
                 name: "Echoing Boom",
                 source: ["KTI", 24],
-                prereqeval : function(v) { return classes.known.inventor.level >= 5; }, //TODO: make incompatible w/ Silencer
+                prereqeval : function(v) { return classes.known.inventor.level >= 5 && GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("silencer (incompatible w/ echoing boom)") == -1;},
                 description: desc([
                     "My Thundermonger does an extra 1d6 damage."
                 ]),
-                //TODO: calcChange to add 1d6 to Thundermonger
+                calcChanges: {
+                    atkCalc: [
+                        function(fields, v, output) {
+                            if (v.theWea.list == 'stormforged') {
+                                output.thunderMng += 1 // Do I need to redo the description?
+                            }
+                        }
+                    ]
+                }
             },
-            "harpoon reel": {
+            "harpoon reel (prereq: lvl 5 inventor)": {
                 name: "Harpoon Reel",
                 source: ["KTI", 24],
                 prereqeval: function(v) { return classes.known.inventor.level >= 5; },
@@ -300,8 +316,162 @@ AddSubClass("inventor", "thundersmith", {
                 action: ["bonus action", "Reel (after harpoon hit)"],
                 eval: function(lvl, chc) {AddWeapon("Harpoon Reel");},
                 removeeval: function(lvl, chc) {RemoveWeapon("Harpoon Reel");},
+            },
+            "terrifying thunder (prereq: lvl 5 inventor, echoing boom)": {
+                name: "Terrifying Thunder",
+                source: ["KTI", 24],
+                prereqeval: function(v) {return classes.known.inventor.level >= 5 && (GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("echoing boom") != -1);},
+                description: desc([
+                    "My Thundermonger deafens a creature until the end of their next turn the first time it does damage to it.",
+                    "The creature must make a Wis save or be frightened of me for 1 min; repeat save at end of each turn, immune for 24 hrs on success."
+                ]),
+            },
+            "storm blast (prereq: lvl 5 inventor)": {
+                name: "Storm Blast",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 5;},
+                description: desc([
+                    "As an action, if I have not used it this turn, I can use my Thundermonger in a 30 ft cone.",
+                    "All crea Str save or take 1d6 + half Thundermonger damage and be knocked prone.",
+                ]),
+                action: ["action", "Storm Blast"],
+            },
+            "elemental swapping (prereq: lvl 9 inventor)": {
+                name: "Elemental Swapping",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 9;},
+                description: desc([
+                    "When I attack with my Stormforged Weapon, I can change the dmg type of my Thundermonger bonus dmg.",
+                    "The dmg can be fire, cold, acid, or lightning, or I can use a Vial of Holy Water to deal radiant."
+                ]),
+            },
+            "mortar shells (prereq: lvl 9 inventor, ammunition property)": {
+                name: "Mortal Shells",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 9 && (GetFeatureChoice("classes", "inventor", "subclassfeature1.1", true).indexOf("hand cannon") != -1 || GetFeatureChoice("classes", "inventor", "subclassfeature1.1", true).indexOf("thunder cannon") != -1);},
+                description: desc([
+                    "I can launch mortar shells from my Stormforged Cannon. This uses my Thundermonger for the turn.",
+                    "I make an attack roll. All crea hit w/i 5 ft of a point in range take wpn dmg + half Thundermonger bonus dmg.",
+                    "Creatures do not get the benefit of cover from this attack unless they have overhead cover."
+                ]),
+                action: ["action", "Mortar Shell (1 attack)"],
+            },
+            "ride the lightning (prereq: lvl 9 inventor, lightning burst)": {
+                name: "Ride the Lightning",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 9 && GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("lightning burst") != -1;},
+                description: desc([
+                    "When I use Lightning Burst, I can expend a spell slot of 1st level or higher to teleport 60 ft in the direction of the Lightning Burst.",
+                    "I can stop anywhere along the path of the Lightning Burst, and it stops where I do."
+                ]),
+            },
+            "shock harpoon (prereq: lvl 9 inventor, harpoon reel)": {
+                name: "Shock Harpoon",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 9 && GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("harpoon reel") != -1;},
+                description: desc([
+                    "After I hit a crea w/ my Harpoon, I can use a bonus action to deal my Thundermonger dmg as lightning dmg to the crea.",
+                    "The target must make a Con save or be stunned until the end of its next turn.",
+                    "Once used, the Harpoon must be reeled in before I can use this again."
+                ]),
+                action: ["bonus action", "Shock Harpoon (1/Reel)"],
+            },
+            "synaptic feedback (prereq: lvl 9 inventor)": {
+                name: "Synaptic Feedback",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 9;},
+                description: desc([
+                    "When I deal lightning dmg w/ my Stormforged wpn, my speed increases 10 ft and I can Dash orDisengage as a bns action.",
+                    "This effect lasts until the end of my next turn.",
+                ]),
+            },
+            "thunder jump (prereq: lvl 9 inventor)": {
+                name: "Thunder Jump (prereq: lvl 9 inventor)",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 9;},
+                description: desc([
+                    "I can use my Thundermonger ability to cast thunder step without expending a spell slot instead of causing dmg.",
+                    "Once I use this ability, I must complete a long or short rest before I use it again."
+                ]),
+                usages: 1,
+                recovery: "short rest",
+                spellcastingBonus: [{
+                    name: "Thunder Jump",
+                    spells: ["thunder step"],
+                    selection: ["thunder step"],
+                    firstCol: "oncesr"
+                }],
+            },
+            "backblast (prereq: lvl 11 inventor)": {
+                name: "Backblast",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 11;},
+                description: desc([
+                    "After dealing thunder dmg on my turn, I can cast thunderclap as a bonus action.",
+                ]),
+                spellcastingBonus: [{
+                    name: "Backblast",
+                    spells: ["thunderclap"],
+                    selection: ["thunderclap"],
+                    spellChanges: {
+                        "thunderclap": {
+                            time: "1 bns",
+                            changes: "I can cast thunderclap as a bonus action instead of an action, provided I deal thunder dmg on my turn."
+                        }
+                    },
+                    firstCol: What("Int Mod"),
+                }],
+                usages: "Intelligence modifier per",
+                recovery: "long rest"
+            },
+            "blast radius (prereq: lvl 11 inventor)": {
+                name: "Blast Radius",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 11;},
+                description: desc([
+                    "My Devastating Blasts now deal half wpn dmg (including mods) in addition to half Thundermonger dmg.",
+                    "The missed target must be within 30 ft of me.",
+                ]),
+            },
+            "stabilization (prereq: lvl 11 inventor)": {
+                name: "Stabilization",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 11;},
+                description: desc([
+                    "If the targets of my Stormforged wpn are prone, I no longer have disadvantage.",
+                    "If neither my target nor I have moved since last I made a ranged wpn atk against them, I have adv on ranged wpn atks."
+                ]),
+            },
+            "massive overload (prereq: lvl 15 inventor, storm blast or lightning burst)": {
+                name: "Massive Overload",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 15 && (GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("storm blast") != -1 || GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("lightning burst") != -1);},
+                description: desc([
+                    "Before taking a shot, I can expend a 3rd+ level spell slot to use Storm Blast or Lightning Burst at the same time as an atk.",
+                    "The additional effect is powered by the spell slot, not Thundermonger. Its direction is the same as my atk.",
+                    "Doing this damages my wpn, requiring me to spend an action to repair it."
+                ]),
+            },
+            "masterwork weapon (prereq: lvl 15 inventor, weapon improvement)": {
+                name: "Masterwork Weapon",
+                source: ["KTI", 25],
+                prereqeval: function(v) {return classes.known.inventor.level >= 15 && GetFeatureChoice("classes", "inventor", "subclassfeature3.1", true).indexOf("weapon improvement") != -1;},
+                description: desc([
+                    "The bonus to attack and damage rolls with my Stormforged Weapon increases by +2.",
+                    "This bonus stacks with Weapon Improvement or Arcane Retrofit, to a max of +4",
+                ]),
+                calcChanges: {
+                    atkCalc: [
+                        function(fields, v, output) {
+                            if (v.theWea.list == 'stormforged') {
+                                output.magic = Math.max(4, output.magic + 2);
+                            };
+                        }
+                    ]
+                }
             }
-        }
+        },
+
     }
 });
 

@@ -228,7 +228,6 @@ ClassList["inventor"] = {
             name : "Peerless Inventor",
 			source : ["KTI", 4],
             minlevel : 20,
-			recovery : "short rest",
             description : "\n   " + "After a short or long rest, I can select and create a temporary version of an Upgrade from my subclass that I do not have but am qualified to take, provided it has a level requirement of 11th or lower." + "\n   " + "I retain this upgrade until I complete a short or long rest after which I can select another Upgrade.",
             usages: 1,
             recovery: "short rest",
