@@ -75,7 +75,7 @@ WeaponsList["thunder cannon"] = {
     abilitytodamage : true,
     modifiers : ["Dex", ""],
     weight : 15,
-    isMagicWeapon: true,
+    // isMagicWeapon: true,
     list: "stormforged",
 };
 
@@ -91,7 +91,7 @@ WeaponsList["hand cannon"] = {
     abilitytodamage : true,
     modifiers : ["Dex", ""],
     weight : 5,
-    isMagicWeapon: true,
+    // isMagicWeapon: true,
     list: "stormforged",
 };
 
@@ -107,7 +107,7 @@ WeaponsList["kinetic hammer"] = {
     abilitytodamage : false,
     modifiers : ["Str", ""],
     weight : 10,
-    isMagicWeapon: true,
+    // isMagicWeapon: true,
     list: "stormforged"
 };
 
@@ -123,7 +123,7 @@ WeaponsList["charged blade"] = {
     abilitytodamage : true,
     modifiers : ["Str", ""],
     weight : 3,
-    isMagicWeapon: true,
+    // isMagicWeapon: true,
     list: "stormforged",
 };
 
@@ -139,7 +139,7 @@ WeaponsList["lightning pike"] = {
     abilitytodamage: true,
     modifiers: ["Str", ""],
     weight: 10,
-    isMagicWeapon: true,
+    // isMagicWeapon: true,
     list: "stormforged",
 };
 
@@ -164,15 +164,15 @@ MagicItemsList["stormforged weapon"] = {
     attunement: true,
     prerequisite: "Requires Thundersmith or Inventor Cross Disciplinary Knowledge",
     prereqeval: function(v) {
-        return classes.known.inventor.level >= 6 || (/thundersmith/).test(classes.known.inventor.subclass);
+        return classes.known.inventor.level >= 6 || (/thundersmith/i).test(classes.known.inventor.subclass);
     },
     allowDuplicates: true,
-    description: "I harness the power of thundering storms in a powerful weapon. I am proficient in it while attuned.",
+    description: "I harness the power of thundering storms in a powerful weapon. I am proficient in it while attuned. This weapon can take the form of a Charged Blade, a Kinetic Hammer, a Lightning Pike, a Hand Cannon, or a Thunder Cannon. As I grow in power as an Inventor I can upgrade my Stormforged Weapon and create additional ones, though I can only attune to one at a time.",
     descriptionLong: "Starting at 1st level, you harness the power of elemental power of thundering storms to create a powerful weapon. This weapon requires attunement and you are proficient with it while attuned. and you can only be attuned to one Stormforged Weapon at a time. If you have multiple Stormforged Weapons, you can change which one you are attuned to during a long rest. If you lose your Stormforged Weapon or wish to create additional ones, you can do so over the course of three days (eight hours each day) by expending 200 gold pieces worth of metal and other raw materials. When you make a new Stormforged Weapon, you can make the same or different type, and select the same or different upgrades.",
     chooseGear: {
         type: "weapon",
         excludeCheck: function (inObjKey, inObj) {
-            return !(inObj.list == "stormforged");
+            return !((/(kinetic hammer)|(thunder cannon)|(charged blade)|(hand cannon)|(lightning pike)/i).test(inObjKey));
         },
         prefixOrSuffix: "brackets",
         itemName1stPage: ["prefix", ""],

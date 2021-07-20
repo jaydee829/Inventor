@@ -21,66 +21,72 @@ AddSubClass("inventor", "thundersmith", {
             description : desc([
                 "I create a deadly weapon by harnessing the power of elemental thundering storms. This weapon requires attunement, I am proficient with it whilst attuned and can only be attuned to one Stormforged Weapon at a time. If I have multiple Stormforged Weapons I can change my attunement as a part of a long rest.",
                 "If I lose my Stormforged Weapon or wish to create additional ones, I can do so over the course of three days (eight hours a day) by expending 200gp worth of raw materials. When making a new Stormforged weapon I can choose the same or a different type, and can select the same or different upgrades.",
-                "Use the \"Choose Feature\" button above to add a Stormforged Weapon",
+                // "Use the \"Choose Feature\" button above to add a Stormforged Weapon",
             ]),
-            extraname: "Stormforged Weapon",
-            extraTimes: 1,
-            extrachoices: ["Thunder Cannon", "Hand Cannon", "Kinetic Hammer", "Charged Blade", "Lightning Pike"],
-            "thunder cannon": {
-                name: "Thunder Cannon",
-                source: ["KTI", 22],
-                description: desc(["I use the power of Thunder to launch a projectile of terrible power, if limited accuracy, over long distances."]),
-                eval: function(lvl, chc) {AddMagicItem("Thunder Cannon");},
-                removeeval: function (lvl, chc) {
-					var loc = CurrentMagicItems.known.indexOf("thunder cannon");
-					if (loc == -1) return;
-					MagicItemClear(loc + 1, true);
-				}
-            },
-            "lightning pike": {
-                name: "Lightning Pike",
-                source: ["KTI", 22],
-                description: desc(["I create a charged blade and stick it to the end of a pole, making it more unwieldy, but with deadly reach."]),
-                eval: function(lvl, chc) {AddMagicItem("Lightning Pike");},
-                removeeval: function (lvl, chc) {
-					var loc = CurrentMagicItems.known.indexOf("lightning pike");
-					if (loc == -1) return;
-					MagicItemClear(loc + 1, true);
-				}
-            },
-            "kinetic hammer": {
-                name: "Kinetic Hammer",
-                source: ["KTI", 22],
-                description: desc(["I keep the thundering power of a cannon imbued in a weapon, allowing it to apply devastating force."]),
-                eval: function(lvl, chc) {AddMagicItem("Kinetic Hammer");},
-                removeeval: function (lvl, chc) {
-					var loc = CurrentMagicItems.known.indexOf("kinetic hammer");
-					if (loc == -1) return;
-					MagicItemClear(loc + 1, true);
-				}
-            },
-            "charged blade": {
-                name: "Charged Blade",
-                source: ["KTI", 22],
-                description: desc(["I channel the power of an elemental storm directly into a blade."]),
-                eval: function(lvl, chc) {AddMagicItem("Charged Blade");},
-                removeeval: function (lvl, chc) {
-					var loc = CurrentMagicItems.known.indexOf("charged blade");
-					if (loc == -1) return;
-					MagicItemClear(loc + 1, true);
-				}
-            },
-            "hand cannon": {
-                name: "Hand Cannon",
-                source: ["KTI", 22],
-                description: desc(["I use thundering power to launch a projectile with all the force of a Cannon, but without the long range or barrel."]),
-                eval: function(lvl, chc) {AddMagicItem("Hand Cannon");},
-                removeeval: function (lvl, chc) {
-					var loc = CurrentMagicItems.known.indexOf("hand cannon");
-					if (loc == -1) return;
-					MagicItemClear(loc + 1, true);
-				}
-            },
+            eval: function(lvl, chc) {AddMagicItem("Stormforged Weapon");},
+            removeeval: function (lvl, chc) {
+                	var loc = CurrentMagicItems.known.indexOf("stormforged weapon");
+                	if (loc == -1) return;
+                	MagicItemClear(loc + 1, true);
+                },
+            // extraname: "Stormforged Weapon",
+            // extraTimes: 1,
+            // extrachoices: ["Thunder Cannon", "Hand Cannon", "Kinetic Hammer", "Charged Blade", "Lightning Pike"],
+            // "thunder cannon": {
+            //     name: "Thunder Cannon",
+            //     source: ["KTI", 22],
+            //     description: desc(["I use the power of Thunder to launch a projectile of terrible power, if limited accuracy, over long distances."]),
+            //     eval: function(lvl, chc) {AddMagicItem("Thunder Cannon");},
+            //     removeeval: function (lvl, chc) {
+			// 		var loc = CurrentMagicItems.known.indexOf("thunder cannon");
+			// 		if (loc == -1) return;
+			// 		MagicItemClear(loc + 1, true);
+			// 	}
+            // },
+            // "lightning pike": {
+            //     name: "Lightning Pike",
+            //     source: ["KTI", 22],
+            //     description: desc(["I create a charged blade and stick it to the end of a pole, making it more unwieldy, but with deadly reach."]),
+            //     eval: function(lvl, chc) {AddMagicItem("Lightning Pike");},
+            //     removeeval: function (lvl, chc) {
+			// 		var loc = CurrentMagicItems.known.indexOf("lightning pike");
+			// 		if (loc == -1) return;
+			// 		MagicItemClear(loc + 1, true);
+			// 	}
+            // },
+            // "kinetic hammer": {
+            //     name: "Kinetic Hammer",
+            //     source: ["KTI", 22],
+            //     description: desc(["I keep the thundering power of a cannon imbued in a weapon, allowing it to apply devastating force."]),
+            //     eval: function(lvl, chc) {AddMagicItem("Kinetic Hammer");},
+            //     removeeval: function (lvl, chc) {
+			// 		var loc = CurrentMagicItems.known.indexOf("kinetic hammer");
+			// 		if (loc == -1) return;
+			// 		MagicItemClear(loc + 1, true);
+			// 	}
+            // },
+            // "charged blade": {
+            //     name: "Charged Blade",
+            //     source: ["KTI", 22],
+            //     description: desc(["I channel the power of an elemental storm directly into a blade."]),
+            //     eval: function(lvl, chc) {AddMagicItem("Charged Blade");},
+            //     removeeval: function (lvl, chc) {
+			// 		var loc = CurrentMagicItems.known.indexOf("charged blade");
+			// 		if (loc == -1) return;
+			// 		MagicItemClear(loc + 1, true);
+			// 	}
+            // },
+            // "hand cannon": {
+            //     name: "Hand Cannon",
+            //     source: ["KTI", 22],
+            //     description: desc(["I use thundering power to launch a projectile with all the force of a Cannon, but without the long range or barrel."]),
+            //     eval: function(lvl, chc) {AddMagicItem("Hand Cannon");},
+            //     removeeval: function (lvl, chc) {
+			// 		var loc = CurrentMagicItems.known.indexOf("hand cannon");
+			// 		if (loc == -1) return;
+			// 		MagicItemClear(loc + 1, true);
+			// 	}
+            // },
         },
             
         "subclassfeature3" : {
@@ -88,7 +94,7 @@ AddSubClass("inventor", "thundersmith", {
             source: ["KTI", 23],
 			minlevel : 3,
 			description : desc([
-                "When I hit with my Stormforged Weapon 1 can deal an extra 1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn.",
+                "When I hit with my Stormforged Weapon I can deal an extra 1d6 thunder damage. Once discharged in this way I cannot deal this bonus damage again until the start of my next turn.",
                 "This extra damage increases by 1d6 every 2nd level I take in Inventor.",
             ]),
 	    	additional : levels.map(function (n) {
@@ -162,6 +168,19 @@ AddSubClass("inventor", "thundersmith", {
                     "I can adapt a wpn w/o the Ammunition property to have a secondary attack giving it the functionality of a Hand Cannon",
                     "or I can give a wpn w/ the Ammunition property a secondary attack with the properties of a Charged Blade",
                 ]),
+                calcChanges: {
+                    atkAdd:[
+                        function (fields, v) {
+                            if ((/(kinetic hammer)|(charged blade)|(lightning pike)/i).test(v.WeaponTextName)) {
+                                AddWeapon("hand cannon");
+                            } else if ((/(hand cannon)|(thunder cannon)/i).test(v.WeaponTextName)) {
+                                AddWeapon("charged blade");
+                            };
+                        },
+                        "My Stormforged weapon gains an additional type of attack from Adaptable Weapon",
+                    ],
+                },
+                // Needs removeeval, maybe?
             },
             "arcane lightning": {
                 name: "Arcane Lightning",
@@ -354,7 +373,7 @@ AddSubClass("inventor", "thundersmith", {
                     "I make an attack roll. All crea hit w/i 5 ft of a point in range take wpn dmg + half Thundermonger bonus dmg.",
                     "Creatures do not get the benefit of cover from this attack unless they have overhead cover."
                 ]),
-                action: ["action", "Mortar Shell (1 attack)"],
+                action: ["action", "Mortar Shell (1 attack; Thundermonger)"],
             },
             "ride the lightning (prereq: lvl 9 inventor, lightning burst)": {
                 name: "Ride the Lightning",

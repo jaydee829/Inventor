@@ -173,8 +173,43 @@ ClassList["inventor"] = {
             source: ["KTI", 4],
             minlevel: 6,
             description: desc([
-                "I gain the knowledge to and can craft one of: a Thundersmith's Stormforged Weapon; an Infusionsmith's Animated Weapon, Blasting Rod, or Infused Weapon; a Potionsmith's Alchemical Reagent Pouch and Alchemical Fire or Alchemical Acit; an Unrestricted Gadgetsmith Upgrade."
-            ])
+                "I gain the knowledge to and can craft one of: a Thundersmith's Stormforged Weapon; an Infusionsmith's Animated Weapon, Blasting Rod, or Infused Weapon; a Potionsmith's Alchemical Reagent Pouch and Alchemical Fire or Alchemical Acid; an Unrestricted Gadgetsmith Upgrade."
+            ]),
+            choices: ["Stormforged Weapon", "Animated Weapon", "Blasting Rod", "Infused Weapon", "Alchemical Fire", "Alchemical Acid", "Gadgetsmith Upgrade"],
+            "stormforged weapon": {
+                name: "Stormforged Weapon",
+                description: "I craft a Thundersmith's Stormforged Weapon",
+                eval: function(lvl, chc) {AddMagicItem("Stormforged Weapon");},
+                removeeval: function (lvl, chc) {
+                	var loc = CurrentMagicItems.known.indexOf("stormforged weapon");
+                	if (loc == -1) return;
+                	MagicItemClear(loc + 1, true);
+                },
+            },
+            "animated weapon": {
+                name: "Animated Weapon",
+                description: "I craft an Infusionsmith's Animated Weapon",
+            },
+            "blasting rod": {
+                name: "Blasting Rod",
+                description: "I craft an Infusionsmith's Blasting Rod",
+            },
+            "infused weapon": {
+                name: "Infused Weapon",
+                description: "I craft an Infusionsmith's Infused Weapon",
+            },
+            "alchemical fire": {
+                name: "Alchemical Fire",
+                description: "I craft a Potionsmith's Alchemical Reagent Pouch and Alchemical Fire",
+            },
+            "alchemical acid": {
+                name: "Alchemical Acid",
+                description: "I craft a Potionsmith's Alchemical Reagent Pouch and Alchemical Acid",
+            },
+            "gadgetsmith upgrade": {
+                name: "Gadgetsmith Upgrade",
+                description: "I gain access to an unrestricted Gadgetsmith upgrade"
+            }
         },
 
         "wondrous items proficiency" : {
