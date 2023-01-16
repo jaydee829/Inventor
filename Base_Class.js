@@ -44,6 +44,13 @@ SourceList["KTI"] = {
     url : "https://drive.google.com/file/d/13t2k7n4w99XRKdNPrdEJ5We5MK2GW6oe/view",
 };
 
+SourceList["KCCC"] = {
+    name : "Kibbles' Compendium of Craft and Creation",
+    abbreviation : "KCCC",
+    group : "KibblesTasty",
+    url : "https://www.kthomebrew.com/"
+};
+
 ClassList["inventor"] = {
     regExpSearch : /inventor/i,
     name : "Inventor",
@@ -154,7 +161,7 @@ ClassList["inventor"] = {
             name : "Arcane Reconstruction",
 			source : ["KTI", 4],
             minlevel : 6,
-            description : "\n   " + "I have mastered the knowledge of using magic to repair things. I learn the Mending cantrip, and can cast it at will. Additionally, I learn the Cure Wounds spell. If I already know Cure Wounds I can select another spell from the Artificer list. When I cast Cure Wounds, it can heal constructs in addition to normally valid targets. Both Mending and Cure Wounds learned through this features are considered Artificer spells for me.",
+            description : "\n   " + "I have mastered the knowledge of using magic to repair things. I learn the Mending cantrip, and can cast it at will. Additionally, I learn the Cure Wounds spell. If I already know Cure Wounds I can select another spell from the Inventor list. Constructs targeted by my Cure Wounds can regain hit points as normal.",
             spellcastingBonus : [{
                 name : "Arcane Reconstruction",
                 spells : ["mending"],

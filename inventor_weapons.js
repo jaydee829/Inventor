@@ -260,6 +260,18 @@ WeaponsList["boomerang of hitting"] = {
     abilitytodamage : true,
     monkweapon : true
 };
+WeaponsList["grappling hook"] = {
+    regExpSearch : /^(?=.*grappling hook).*$/i,
+    name : "Grappling Hook",
+    source : ["KCCC", 14],
+    ability: 1,
+    type: "special",
+    damage: [0, 4, "Piercing"],
+    range : "20 ft",
+    list: "improvised",
+    description : "Tgt crea, obj, or surface. If tgt Small-, grapple check against it; pull towards me on success. Tgt Medium+, pull myself to it. Opp atks provoked by this movement at disadv.",
+    abilitytodamage: false,
+};
 
 // };
 
